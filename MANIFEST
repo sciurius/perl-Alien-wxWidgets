@@ -97,6 +97,7 @@ patches/wxWidgets-2.9.0-msgdlg.patch
 patches/wxWidgets-2.9.4-plugin.patch
 patches/wxWidgets-3.0.2-webkit.patch
 README.txt
+README.md
 script/make_ppm.pl
 t/01_load.t
 t/zy_pod_coverage.t
