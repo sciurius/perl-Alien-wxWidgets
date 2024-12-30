@@ -22,6 +22,8 @@ my %VERSIONS =
     '3.0.0'         => 'patches/data-3.0.0',
     '3.0.1'         => 'patches/data-3.0.1',
     '3.0.2'         => 'patches/data-3.0.2',
+    '3.1.0'         => 'patches/data-3.1.0',
+    '3.2.6'         => 'patches/data-3.2.6',
     );
 
 my ($DEFAULT_VERSION, $DEFAULT_ARCHIVE_TYPE) = _get_default_wxwidgets_version_and_type();
@@ -243,8 +245,8 @@ if( $build_wx && $wx_version !~ /^(2\.9|3\.)/ ) {
                                    'Do you want to enable Unicode support',
                                    'yes' );
     $build->notes( 'build_wx_unicode' => $build_wx_unicode );
-} elsif( $build_wx ) {
-    # Unicode-only for 2.9.x and higher
+} else {
+    # Unicode-only for 2.9.x and higher, or if we do not build.
     $build->notes( 'build_wx_unicode' => 1 );
 }
 if( $build_wx ) {
@@ -301,7 +303,7 @@ sub _ask {
 sub _get_default_wxwidgets_version_and_type {
     
     # default version and archive type
-    my $defver = '3.0.2';
+    my $defver = '3.2.6';
     my $deftype = 'tar.bz2';
     
     if( $^O =~ /^linux/i) {

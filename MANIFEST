@@ -45,6 +45,7 @@ patches/data-2.9.4
 patches/data-3.0.0
 patches/data-3.0.1
 patches/data-3.0.2
+patches/data-3.2.6
 patches/wxGTK-2.8.12-dirdialog.patch
 patches/wxGTK-2.9.4-dirdialog.patch
 patches/wxMac-2.8.10-fontdlg.patch

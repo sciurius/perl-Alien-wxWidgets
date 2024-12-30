@@ -1,6 +1,8 @@
 Revision history for Perl extension Alien::wxWidgets.
 
 0.70  TBR
+    - Add changes for newer macOS versions.
+    - Add 3.2.6 and make default.
 
 0.69  Tue Apr 18 2017 
     - added build dependency on LWP::Protocol::https - it is always
