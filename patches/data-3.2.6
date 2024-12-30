@@ -5,7 +5,7 @@ my $BASE    = 'wxWidgets';
 
 my @common = ();		# no common patches
 
-my $winsetuppatch = ( $FORCE_GTX ) ? "wxMSW-$VERSION-setup_gctx.patch : "wxMSW-$VERSION-setup.patch";
+my $winsetuppatch = ( $FORCE_GTX ) ? "wxMSW-$VERSION-setup_gctx.patch" : "wxMSW-$VERSION-setup.patch";
 
 {   
   msw     => { unicode => [ 
