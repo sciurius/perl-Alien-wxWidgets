@@ -48,7 +48,7 @@ sub wxwidgets_configure_extra_flags {
         return $extra_flags;
     }
 
-    my $darwinver = 100;
+    my $darwinver = 0;
     if(`uname -r` =~ /^(\d+)\./) {
         $darwinver = $1;
     }
@@ -56,26 +56,55 @@ sub wxwidgets_configure_extra_flags {
     # we are determining extra flags
     $extra_flags = '';
     
-    # Simplified build
+    # on Snow Leopard, and above force wxWidgets 2.8.x builds to be 32-bit;
+    # force 2.9 builds to be 32 bit too if we have a 32 bit Perl
     
-    if(  $darwinver <= 9  ) {  # Tiger && Leopard    
+    if(     $darwinver >= 10
+        &&  `sysctl hw.cpu64bit_capable` =~ /^hw.cpu64bit_capable: 1/
+        && ( $self->awx_version_type == 2
+             || $Config{ptrsize} == 4 ) ) {
+             
         print "Forcing wxWidgets build to 32 bit\n";
 		        $extra_flags .= ' ' . join ' ', map { qq{$_="-arch i386"} }
 		                                     qw(CFLAGS CXXFLAGS LDFLAGS
                                         OBJCFLAGS OBJCXXFLAGS);
-    } elsif(  $darwinver == 10  ) { # Snow Leopard
-        # just find the right SDK and accept users arch flags
-        my $sdk1 = qq(/Developer/SDKs/MacOSX10.6.sdk);
-		my $sdk2 = qq(/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.6.sdk);
-        my $macossdk = ( -d $sdk2 ) ? $sdk2 : $sdk1;
-    	if( -d $macossdk ) {
-            $extra_flags .= qq( --with-macosx-version-min=10.6 --with-macosx-sdk=${macossdk});
-        }
-    } else {
-        # Lion and later - accept default SDK and set min version 10.7
-        $extra_flags .= qq( --with-macosx-version-min=10.7);
     }
-
+    
+#    if ( $darwinver >= 13 ) {
+#	    # we can't currently build with Xcode 5 on Mavericks
+#	    my $xcodestring = qx(xcodebuild -version) || '';
+#	    if ($xcodestring =~ /Xcode\s+(\d+)/ ) {
+#	        my $xcodever = $1;
+#	        if ( $xcodever >= 5) {
+#		        print <<EOX;
+#=======================================================================
+#wxPerl does not currently support building on Mac OSX Mavericks and
+#above with Xcode 5.x or greater.
+#If you wish to develop using wxPerl on this machine you should remove
+#XCode 5.x and download Xcode 4.6.3 from the Apple developer site.
+#=======================================================================
+#EOX
+#                exit 1;
+#	        }
+#	    }
+#    }
+    
+    # on Snow Leopard and above, force use of available SDK and min versions
+    
+    if( $darwinver >= 10 ) {
+        
+	# SDK 10.7 will not work if we have SDK 10.8 installed too - so reverse order
+        for my $sdkversion ( qw( 10.9 10.8 10.7 10.6 ) ) {
+            my $sdk1 = qq(/Developer/SDKs/MacOSX${sdkversion}.sdk);
+			my $sdk2 = qq(/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${sdkversion}.sdk);
+    		my $macossdk = ( -d $sdk2 ) ? $sdk2 : $sdk1;
+    		if( -d $macossdk ) {
+                my $macosmin = ( $sdkversion =~ /^10\.(8|7|6)$/ ) ? '10.6' : '10.7';
+    		    $extra_flags .= qq( --with-macosx-version-min=${macosmin} --with-macosx-sdk=${macossdk});
+    		    last;
+    		}
+    	}
+    }
     
     $extra_flags .= ' --enable-graphics_ctx';
     
@@ -92,6 +121,7 @@ sub wxwidgets_configure_extra_flags {
         }
     }
     
+
     return $extra_flags;
 }
 
