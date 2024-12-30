@@ -1,4 +1,4 @@
-# Alien::wxWidgets - Perl interface to wxWidgets library
+# Alien::wxWidgets - Perl interface to wxWidgets
 
 ![Version](https://img.shields.io/github/v/release/sciurius/perl-Alien-wxWidgets)
 ![GitHub issues](https://img.shields.io/github/issues/sciurius/perl-Alien-wxWidgets)
@@ -19,7 +19,9 @@ and wxWidgets older than 3.0.
 
 # INSTALLATION
 
-...
+Installing `Alien::wxWidgets` is usually trivial, except on Windows
+systems. See [Building wxWidgets for wxPerl on Windows with Strawberry
+Perl](Strawberry.md) for instructions how to build for Strawberry Perl.
 
 # SUPPORT AND DOCUMENTATION
 
