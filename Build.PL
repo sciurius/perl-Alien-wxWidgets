@@ -3,7 +3,7 @@
 BEGIN { our $NO_INIT = 1 }
 
 use strict;
-use lib "./lib", "./inc";
+use lib ".", "./lib", "./inc";
 use My::Build;
 use Config;
 
