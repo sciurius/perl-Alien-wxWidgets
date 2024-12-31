@@ -1,6 +1,12 @@
 Revision history for Perl extension Alien::wxWidgets.
 
-0.70  TBR
+0.71  2024-12-31
+
+    - Use default setup.h so our built version matches the binary install.
+    - Add GitHub actions.
+
+0.70  2024-12-30
+
     - Forked from https://github.com/wxPerl/Alien-wxWidgets.git.
     - Add changes for newer macOS versions.
     - Add 3.2.6 and make default.

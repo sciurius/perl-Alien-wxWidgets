@@ -1,0 +1,34 @@
+name: CI for macOS
+
+on:
+    push:
+        branches:
+          - 'master'
+    pull_request:
+        branches:
+          - 'master'
+
+jobs:
+  perl-job:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Perl
+        run: brew install perl
+      - name: perl -V
+        run: perl -V
+      - name: Set up wxWidgets
+        run: |
+          brew install wxwidgets@3.2
+      - name: Install Dependencies
+        run: |
+          brew install cpanm
+          cpanm --installdeps --notest .
+      - name: Build Alien::wxWidgets
+        run: |
+          perl Build.PL --wxWidgets-build=0
+          make
+          make test
+          make install
+          
+
