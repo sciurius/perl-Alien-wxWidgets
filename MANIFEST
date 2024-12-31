@@ -101,4 +101,6 @@ script/make_ppm.pl
 t/01_load.t
 t/zy_pod_coverage.t
 t/zz_pod.t
+Makefile.PL
 META.json
+META.yml
