@@ -1,4 +1,4 @@
-name: CI for macOS
+name: CI for Linux
 
 on:
     push:
@@ -17,18 +17,18 @@ jobs:
         run: perl -V
       - name: Install wxWidgets
         run: |
-          apt-get install -y --fix-missing libwxgtk3.0-dev
-          apt-get install -y --fix-missing libwxgtk-webview3.0-dev
-          apt-get install -y --fix-missing libwxgtk-media3.0-dev
+          sudo apt-get install -y --fix-missing libwxgtk3.0-dev
+          sudo apt-get install -y --fix-missing libwxgtk-webview3.0-dev
+          sudo apt-get install -y --fix-missing libwxgtk-media3.0-dev
       - name: Install Dependencies
         run: |
-          apt-get install cpanminus
+          sudo apt-get install cpanminus
           cpanm --installdeps --notest .
       - name: Build Alien::wxWidgets
         run: |
           perl Build.PL --wxWidgets-build=0 --wxWidgets-version=3.0
           ./Build
           ./Build test
-          ./Build install
+          sudo ./Build install
           
 
