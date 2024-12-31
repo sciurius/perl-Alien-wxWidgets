@@ -1,11 +1,26 @@
 # Building wxWidgets for wxPerl on Windows with Strawberry Perl
 
-**IMPORTANT**: This article refers to the **updated** ``Alien::wxWidgets`` and ``Wx`` kits, obtainable from
+**IMPORTANT** This article refers to the **updated** ``Alien::wxWidgets`` and ``Wx`` kits, obtainable from
 
-<https://github.com/sciurius/wxPerl/Releases/R3.004/Wx-3.004.tar.gz>  
-<https://github.com/sciurius/wxPerl/Releases/R3.004/Alien-wxWidgets-0.70.tar.gz>
+<https://github.com/sciurius/wxPerl/releases/>
+
+**IMPORTANT** Before proceeding, remove `Alien::wxWidgets` if already installed.
+
+## Alien::wxWidgets (quick and easy)
+
+If you do not have wxWidgets and wxPerl on your system:
+
+````
+cpanm https://github.com/sciurius/wxPerl/releases/ ... /Alien-wxWidgets-x.xx.tar.gz
+cpanm https://github.com/sciurius/wxPerl/releases/ ... /Wx-x.xx.tar.gz
+````
+
+That's all.
 
 ## Alien::wxWidgets (from scratch)
+
+Download and unpack the `Alien::wxWidgets` kit.
+
 ````
 cd Alien-wxWidgets-x.xx
 perl Build.PL --wxWidgets-version=3.2.6
@@ -90,7 +105,7 @@ Install into `C:\wxWidgets-3.2.6`.
 Set an environment variable `WXDIR`. In PowerShell, `$Env:WXDIR =
 "C:\wxWidgets-3.2.6"`. In CMD, `set WXDIR=C:\wxWidgets-3.2.6`.
 
-Execute the build:
+Download and unpack the `Alien::wxWidgets` kit and execute the build:
 ````
 cd Alien-wxWidgets-x.xx
 perl Build.PL
@@ -112,6 +127,9 @@ Unpack `wxMSW-3.2.6_gcc810_x64_Dev.7z` in the root of the wxWidgets kit.
 
 Set environment variable `WXDIR` to the root of the wxWidgets
 install, see above.
+
+Download and unpack the `Alien::wxWidgets` kit.
+
 ````
 cd Alien-wxWidgets-x.xx
 perl Build.PL --wxWidgets-build=0
