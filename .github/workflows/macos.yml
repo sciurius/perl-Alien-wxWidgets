@@ -27,8 +27,8 @@ jobs:
       - name: Build Alien::wxWidgets
         run: |
           perl Build.PL --wxWidgets-build=0
-          make
-          make test
-          make install
+          ./Build
+          ./Build test
+          ./Build install
           
 
