@@ -3,7 +3,7 @@ Revision history for Perl extension Alien::wxWidgets.
 0.71  2024-12-31
 
     - Use default setup.h so our built version matches the binary install.
-    - Add GitHub actions.
+    - Add GitHub actions for linux and macOS.
 
 0.70  2024-12-30
 
