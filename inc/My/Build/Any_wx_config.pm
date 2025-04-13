@@ -230,9 +230,8 @@ sub build_wxwidgets {
     my $prefix_dir = $self->_key;
     my $prefix = awx_install_arch_dir( $self, $prefix_dir );
     my $opengl = $self->notes( 'build_wx_opengl' );
-    my $args = sprintf '--with-%s %s--disable-compat24',
-                       $self->awx_build_toolkit,
-                       $opengl ? '--with-opengl ' : '';
+    my $args = '--with-' . $self->awx_build_toolkit;
+    $args .= ' --with-opengl' if $opengl;
     my $unicode = $self->awx_is_unicode ? 'enable' : 'disable';
     my $debug = '';
     

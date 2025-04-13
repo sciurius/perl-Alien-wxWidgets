@@ -1,0 +1,20 @@
+my $VERSION = '3.2.7';
+$URL   ||= "https://github.com/wxWidgets/wxWidgets/releases/download/v$VERSION";
+my $BASE    = 'wxWidgets';
+# $TYPE from Build.PL
+
+my @common = ();		# no common patches
+
+{   
+  msw     => { unicode => [ @common ],
+               },
+  mac     => { unicode => [ @common ],
+               },
+  unix    => { unicode => [ @common ],
+               },
+  data    => { url  => ( sprintf '%s/%s-%s.%s', $URL, $BASE, $VERSION, $TYPE ),
+               directory => ( sprintf '%s-%s', $BASE, $VERSION ),
+               archive   => ( sprintf '%s-%s.%s', $BASE, $VERSION, $TYPE ),
+               version   => $VERSION,
+               },
+  };

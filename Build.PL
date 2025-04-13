@@ -24,6 +24,7 @@ my %VERSIONS =
     '3.0.2'         => 'patches/data-3.0.2',
     '3.1.0'         => 'patches/data-3.1.0',
     '3.2.6'         => 'patches/data-3.2.6',
+    '3.2.7'         => 'patches/data-3.2.7',
     );
 
 my ($DEFAULT_VERSION, $DEFAULT_ARCHIVE_TYPE) = _get_default_wxwidgets_version_and_type();
