@@ -40,7 +40,6 @@ patches/data-3.2.6
 patches/data-3.2.7
 patches/data-3.2.8
 patches/data-3.3.0
-patches/wxGTK-3.3.0-compat.patch
 patches/wxMSW-3.0.0-setup.patch
 patches/wxMSW-3.0.0-setup_gctx.patch
 patches/wxMSW-3.0.0-makefiles.patch

@@ -5,7 +5,7 @@ my $BASE    = 'wxWidgets';
 
 # To support wxPerl on 3.3.0 a compatibility patch is required.
 # This patch will be part of 3.3.1.
-my @common = qw( wxWidgets-3.0.0-magic.patch wxGTK-3.3.0-compat.patch );
+my @common = qw( wxWidgets-3.0.0-magic.patch );
 
 {   
   msw     => { unicode => [ @common ],
