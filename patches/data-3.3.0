@@ -1,17 +1,14 @@
-my $VERSION = '2.9.2';
-   $URL   ||= "http://prdownloads.sourceforge.net/wxwindows";
+my $VERSION = '3.3.0';
+$URL   ||= "https://github.com/wxWidgets/wxWidgets/releases/download/v$VERSION";
 my $BASE    = 'wxWidgets';
 # $TYPE from Build.PL
 
-my @common = qw(wxWidgets-2.9.0-magic.patch);
+# To support wxPerl on 3.3.0 a compatibility patch is required.
+# This patch will be part of 3.3.1.
+my @common = qw( wxWidgets-3.0.0-magic.patch wxGTK-3.3.0-compat.patch );
 
-my $winsetuppatch = ( $FORCE_GTX ) ? 'wxMSW-2.9.2-setup_gctx.patch' : 'wxMSW-2.9.2-setup.patch';
-
-{ msw     => { unicode => [ 
-  'wxMSW-2.9.2-makefiles.patch',
-  $winsetuppatch, 
-  @common 
-  ],
+{   
+  msw     => { unicode => [ @common ],
                },
   mac     => { unicode => [ @common ],
                },

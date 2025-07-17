@@ -19,7 +19,7 @@ name: Alien-wxWidgets
 provides:
   Alien::wxWidgets:
     file: lib/Alien/wxWidgets.pm
-    version: '0.71'
+    version: 0.71_01
   Alien::wxWidgets::Utility:
     file: lib/Alien/wxWidgets/Utility.pm
     version: '0.59'
@@ -28,9 +28,9 @@ requires:
   perl: '5.006'
 resources:
   MailingList: http://lists.perl.org/list/wxperl-users.html
-  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Alien-wxWidgets
+  bugtracker: https://github.com/sciurius/perl-Alien-wxWidgets/issues
   homepage: http://www.wxperl.it/
   license: http://dev.perl.org/licenses/
-  repository: http://svn.code.sf.net/p/wxperl/code/Alien-wxWidgets
-version: '0.71'
-x_serialization_backend: 'CPAN::Meta::YAML version 0.018'
+  repository: http://github.com/sciurius/perl-Alien-wxWidgets
+version: 0.71_01
+x_serialization_backend: 'CPAN::Meta::YAML version 0.020'

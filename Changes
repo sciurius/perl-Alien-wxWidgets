@@ -2,7 +2,13 @@ Revision history for Perl extension Alien::wxWidgets.
 
 0.00
 
-    - Add 3.2.7.
+    - Add 3.2.7, 3.2.8, 3.3.0.
+    - Remove --enable-unicode for 3.3.0+.
+    - Remove --with-compat24 for 3.3.0+.
+    - Remove readonlyness from file permissions.
+    - Remove wxWidgets 2.x stuff.
+    - Add 3.3.0 with custom patch.
+    - Update patch utility to recent.
 
 0.71  2024-12-31
 

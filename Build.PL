@@ -11,20 +11,14 @@ our( $TYPE, $URL, $FORCE_GTX );
 
 my %VERSIONS =
 
-  ( '2.8.12'        => 'patches/data-2.8.12',
-    '2.8.11'        => 'patches/data-2.8.11',
-    '2.8.10'        => 'patches/data-2.8.10',
-    '2.9.0'         => 'patches/data-2.9.0',
-    '2.9.1'         => 'patches/data-2.9.1',
-    '2.9.2'         => 'patches/data-2.9.2',
-    '2.9.3'         => 'patches/data-2.9.3',
-    '2.9.4'	        => 'patches/data-2.9.4',
-    '3.0.0'         => 'patches/data-3.0.0',
+  ( '3.0.0'         => 'patches/data-3.0.0',
     '3.0.1'         => 'patches/data-3.0.1',
     '3.0.2'         => 'patches/data-3.0.2',
     '3.1.0'         => 'patches/data-3.1.0',
     '3.2.6'         => 'patches/data-3.2.6',
     '3.2.7'         => 'patches/data-3.2.7',
+    '3.2.8'         => 'patches/data-3.2.8',
+    '3.3.0'         => 'patches/data-3.3.0',
     );
 
 my ($DEFAULT_VERSION, $DEFAULT_ARCHIVE_TYPE) = _get_default_wxwidgets_version_and_type();

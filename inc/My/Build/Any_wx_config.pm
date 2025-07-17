@@ -232,9 +232,13 @@ sub build_wxwidgets {
     my $opengl = $self->notes( 'build_wx_opengl' );
     my $args = '--with-' . $self->awx_build_toolkit;
     $args .= ' --with-opengl' if $opengl;
-    my $unicode = $self->awx_is_unicode ? 'enable' : 'disable';
+    my $unicode = '';
+    if ( $self->notes( 'build_data' )->{data}{version} lt "3.3." ) {
+	$unicode = $self->awx_is_unicode ? 'enable' : 'disable';
+	$unicode .= "-unicode";
+    }
     my $debug = '';
-    
+
     if( $self->awx_version_type == 2 ) {
         $debug = ( $self->awx_debug ) ? '--enable-debug' : '--disable-debug';
     } else {
@@ -245,7 +249,7 @@ sub build_wxwidgets {
     my $universal = $self->awx_is_universal ? 'enable' : 'disable';
     my $dir = $self->notes( 'build_data' )->{data}{directory};
     my $cmd = "echo exit | " . # for OS X 10.3...
-              "sh ../configure --prefix=$prefix $args --$unicode-unicode"
+              "sh ../configure --prefix=$prefix $args $unicode"
             . " $debug --$monolithic-monolithic"
             . " --$universal-universal_binary $extra_flags";
     my $old_dir = Cwd::cwd;

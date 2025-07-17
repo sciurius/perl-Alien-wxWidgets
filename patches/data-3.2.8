@@ -1,19 +1,14 @@
-my $VERSION = '2.9.3';
-   $URL   ||= "http://prdownloads.sourceforge.net/wxwindows";
+my $VERSION = '3.2.8';
+$URL   ||= "https://github.com/wxWidgets/wxWidgets/releases/download/v$VERSION";
 my $BASE    = 'wxWidgets';
 # $TYPE from Build.PL
 
-my @common = qw(wxWidgets-2.9.0-magic.patch);
+my @common = qw(wxWidgets-3.0.0-magic.patch );
 
-my $winsetuppatch = ( $FORCE_GTX ) ? 'wxMSW-2.9.3-setup_gctx.patch' : 'wxMSW-2.9.3-setup.patch';
-
-{ msw     => { unicode => [ 
-  'wxMSW-2.9.3-makefiles.patch',
-  $winsetuppatch, 
-  @common 
-  ],
+{   
+  msw     => { unicode => [ @common ],
                },
-  mac     => { unicode => [ 'cocoaoverlay-2-9-3.patch', @common ],
+  mac     => { unicode => [ @common ],
                },
   unix    => { unicode => [ @common ],
                },
