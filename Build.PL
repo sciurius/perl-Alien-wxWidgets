@@ -79,8 +79,8 @@ my $build = $class->new
       { resources       =>
           { 'license'       => [ 'http://dev.perl.org/licenses/' ],
             'homepage'      => 'http://www.wxperl.it/',
-            'bugtracker'    => 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Alien-wxWidgets',
-            'repository'    => 'http://svn.code.sf.net/p/wxperl/code/Alien-wxWidgets',
+            'bugtracker'    => 'https://github.com/sciurius/Alien-wxWidgets/issues',
+            'repository'    => 'http://github.com/sciurius/perl-Alien-wxWidgets',
             'MailingList'   => 'http://lists.perl.org/list/wxperl-users.html',
             },
         },
