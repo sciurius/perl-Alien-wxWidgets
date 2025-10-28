@@ -92,7 +92,7 @@ sub awx_configure {
     $config{config}{build} = $self->awx_is_monolithic ? 'mono' : 'multi';
 
     if( $config{config}{toolkit} eq 'gtk' ) {
-        $self->wx_config( 'basename' ) =~ m/(gtk2?)/i or
+        $self->wx_config( 'basename' ) =~ m/(gtk\d?)/i or
           die 'PANIC: ', $self->wx_config( 'basename' );
         $config{config}{toolkit} = lc $1;
     }
