@@ -37,17 +37,17 @@
    "provides" : {
       "Alien::wxWidgets" : {
          "file" : "lib/Alien/wxWidgets.pm",
-         "version" : "0.71_01"
+         "version" : "0.73"
       },
       "Alien::wxWidgets::Utility" : {
          "file" : "lib/Alien/wxWidgets/Utility.pm",
          "version" : "0.59"
       }
    },
-   "release_status" : "testing",
+   "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/sciurius/perl-Alien-wxWidgets/issues"
+         "web" : "https://github.com/sciurius/Alien-wxWidgets/issues"
       },
       "homepage" : "http://www.wxperl.it/",
       "license" : [
@@ -58,6 +58,6 @@
       },
       "x_MailingList" : "http://lists.perl.org/list/wxperl-users.html"
    },
-   "version" : "0.71_01",
+   "version" : "0.73",
    "x_serialization_backend" : "JSON::PP version 4.16"
 }

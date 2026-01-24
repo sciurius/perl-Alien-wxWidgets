@@ -18,7 +18,7 @@ my %VERSIONS =
     '3.2.6'         => 'patches/data-3.2.6',
     '3.2.7'         => 'patches/data-3.2.7',
     '3.2.8'         => 'patches/data-3.2.8',
-    '3.3.0'         => 'patches/data-3.3.0',
+    '3.3.1'         => 'patches/data-3.3.1',
     );
 
 my ($DEFAULT_VERSION, $DEFAULT_ARCHIVE_TYPE) = _get_default_wxwidgets_version_and_type();
@@ -296,24 +296,10 @@ sub _ask {
 }
 
 sub _get_default_wxwidgets_version_and_type {
-    
+
     # default version and archive type
-    my $defver = '3.2.6';
+    my $defver = (sort keys %VERSIONS)[-1];
     my $deftype = 'tar.bz2';
-    
-    if( $^O =~ /^linux/i) {
-        # 2.8.10 if this is gtk < 2.4
-        my $pkg_config = $ENV{PKG_CONFIG} || 'pkg-config';
-        if( my $gtkfullver = qx($pkg_config --modversion gtk+-2.0 2>&1) ) {
-            if($gtkfullver =~ /^\d+\.(\d+)\.\d+/) {
-                if ( $1 < 4 ) {
-                    $defver = '2.8.10';
-                    $deftype = 'tar.gz';
-                }
-            }
-        }
-    }
-    
     return ($defver, $deftype);
 }
 
