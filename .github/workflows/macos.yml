@@ -20,6 +20,8 @@ jobs:
       - name: Set up wxWidgets
         run: |
           brew install wxwidgets@3.2
+          sudo install `which wx-config-3.2` /usr/local/bin/wx-config
+      - run: wx-config --version
       - name: Install Dependencies
         run: |
           brew install cpanm

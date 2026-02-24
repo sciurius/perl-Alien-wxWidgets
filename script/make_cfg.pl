@@ -5,8 +5,8 @@
 # Author          : Johan Vromans
 # Created On      : Tue Sep 15 15:59:04 1992
 # Last Modified By: Johan Vromans
-# Last Modified On: Fri Jan 23 14:49:44 2026
-# Update Count    : 82
+# Last Modified On: Mon Jan 26 13:09:16 2026
+# Update Count    : 91
 # Status          : Unknown, Use with caution!
 
 ################ Common stuff ################
@@ -28,6 +28,7 @@ use Getopt::Long 2.13;
 my $wxdir;
 my $wxversion;
 my $output;
+my $cc = "gcc";
 my $verbose = 1;		# verbose processing
 
 # Development options (not shown with -help).
@@ -93,8 +94,8 @@ warn( "Using wxWidgets $wxversion in $wxdir\n" ) if $verbose;
 # GCC bases.
 #  $gccbase    gcc_dll   gcc1320_dll
 #  $gccbase2   gcc.dll   gcc1320.dll
-my $gccbase = basename(glob( w( "lib", "gcc*_dll" ) ));
-warn( "Using GCC $gccbase\n" ) if $verbose;
+my $gccbase = basename(glob( w( "lib", "${gcc}*_dll" ) ));
+warn( "Using ", uc($gcc}, " $gccbase\n" ) if $verbose;
 ( my $gccbase2 = $gccbase ) =~ s/_dll$/.dll/;
 
 # Alien::wxWidgets compatible values.
@@ -134,16 +135,18 @@ my %values =
 # Add the library info.
 
 # Process the .a libs.
-for my $lib ( glob( w( "lib", $gccbase, "libwx*.a" ) ) ) {
-    next unless $lib =~ /libwx(base|msw)${wxu}(?:_(\w+))?\.a/;
-    my $ext = $2;
+for my $lib ( glob( w( "lib", $gccbase,  $gcc eq "gcc" ? "libwx*.a" : "wx*.lib" ) ) ) {
+    next unless $lib =~ /(lib)?wx(base|msw)${wxu}(?:_(\w+))?\.(a|lib)/;
+    my $lp = $1 // "";
+    my $ext = $3;
+    my $a = $4;
 
     # root -> wxbase33u_net
-    my $root = "wx" . $1 . "${wxu}";
+    my $root = "wx" . $2 . "${wxu}";
     $root .= "_$ext" if $ext;
 
     # imp -> libwxbase33u_net.a
-    my $imp = "lib" . $root . ".a";
+    my $imp = $lp . $root . ".$a";
 
     # dll -> wxbase33u_net_gcc1320_x64.dll (will be actualized).
     my $dll = $root . "_" . $gccbase2;
@@ -230,6 +233,7 @@ sub app_options {
 
     if ( !GetOptions( 'wxdir=s'	     => \$wxdir,
 		      'wxversion=s'  => \$wxversion,
+                      'gcc=s'	     => \$gcc,
 		      'output=s'     => \$output,
 		      'ident'	     => \$ident,
 		      'verbose+'     => \$verbose,
@@ -242,6 +246,7 @@ sub app_options {
 	app_usage(2);
     }
     app_ident() if $ident;
+    warn("Warning: compiler $gcc is not (fully) supported.\n") unless $gcc eq "gcc";
 }
 
 sub app_ident {
@@ -255,6 +260,7 @@ sub app_usage {
 Usage: $0 [options]
    --wxdir=XXX          location of the wxWidgets (default \$ENV{WXDIR})
    --wxversion=XXX      wxWidgets version (default inferred from wxdir)
+   --gcc=XXX            compiler, "gcc" or "vc"
    --output=XXX         output file (default is standard output)
                         may contain %{xxx} to substitute Config values
    --ident		shows identification

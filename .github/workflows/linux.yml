@@ -17,16 +17,16 @@ jobs:
         run: perl -V
       - name: Install wxWidgets
         run: |
-          sudo apt-get install -y libwxgtk3.0-dev
-          sudo apt-get install -y libwxgtk-webview3.0-gtk3-dev
-          sudo apt-get install -y libwxgtk-media3.0-gtk3-dev
+          sudo apt-get install -y libwxgtk3.2-dev
+          sudo apt-get install -y libwxgtk-webview3.2-gtk3-dev
+          sudo apt-get install -y libwxgtk-media3.2-gtk3-dev
       - name: Install Dependencies
         run: |
           sudo apt-get install cpanminus
           cpanm --installdeps --notest .
       - name: Build Alien::wxWidgets
         run: |
-          perl Build.PL --wxWidgets-build=0 --wxWidgets-version=3.0
+          perl Build.PL --wxWidgets-build=0 --wxWidgets-version=3.2
           ./Build
           ./Build test
           sudo ./Build install
