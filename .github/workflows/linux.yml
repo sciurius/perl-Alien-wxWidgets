@@ -24,7 +24,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get install cpanminus
-          sudo cpanm --installdeps --notest .
+          cpanm --sudo --installdeps --notest .
       - name: Build Alien::wxWidgets
         run: |
           perl Build.PL --wxWidgets-build=0 --wxWidgets-version=3.2
