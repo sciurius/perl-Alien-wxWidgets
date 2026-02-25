@@ -17,6 +17,7 @@ jobs:
         run: perl -V
       - name: Install wxWidgets
         run: |
+          sudo apt-get update 
           sudo apt-get install -y libwxgtk3.2-dev
           sudo apt-get install -y libwxgtk-webview3.2-dev
           sudo apt-get install -y libwxgtk-media3.2-dev
